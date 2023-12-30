@@ -2,9 +2,10 @@ import React, { createContext, useContext, useReducer } from "react";
 const AppCon = createContext();
 const ins = {
   isAddMode: true,
-  EditUser: undefined,
+  EditUser: null,
   logged: undefined,
 };
+
 const reducer = (s = ins, { type, payload }) => {
   switch (type) {
     case "setEditMode":
@@ -15,6 +16,7 @@ const reducer = (s = ins, { type, payload }) => {
       };
   }
 };
+
 function AppProvider({ children }) {
   const [data, dispatch] = useReducer(reducer, ins);
   return (

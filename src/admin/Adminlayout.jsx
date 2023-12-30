@@ -1,13 +1,22 @@
 import React, { useRef, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 const AdminPage = () => {
+  const { pathname } = useLocation();
+  console.log(location);
   const [file, setFile] = useState();
   const fr = useRef();
   return (
     <section className=" w-full mt-12 ">
       <nav className="w-full flex space-x-3 justify-end items-center pr-3">
-        <a href="#">register</a>
-        <a href="#">search</a>
+        <a
+          href="#"
+          className={`${pathname.includes("addoredit") ? "hidden" : ""}`}
+        >
+          register
+        </a>
+        <a href="#" className={`${pathname == "/admin" ? "hidden" : ""}`}>
+          search
+        </a>
       </nav>
       <form action="" className="">
         <input

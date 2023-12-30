@@ -6,6 +6,7 @@ import Adminlayout from "./admin/Adminlayout";
 import EditOrAdd from "./admin/EditOrAdd";
 import Search from "./admin/Search";
 import { useContextData } from "./context/provider";
+import Pagenotfound from "./Pagenotfound";
 
 function App() {
   const value = useContextData();
@@ -16,10 +17,11 @@ function App() {
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Home />} />
-            <Route path="admin" element={<Adminlayout />}>
+            <Route path="admin/" element={<Adminlayout />}>
               <Route index element={<Search />} />
               <Route path="addoredit" element={<EditOrAdd />} />
             </Route>
+            <Route path="*" element={<Pagenotfound />} />
           </Route>
         </Routes>
       </BrowserRouter>
