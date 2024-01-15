@@ -7,7 +7,7 @@ const AdminPage = () => {
   const fr = useRef();
   return (
     <section className=" w-full mt-12 ">
-      <nav className="w-full flex space-x-3 justify-end items-center pr-3">
+      {/* <nav className="w-full flex space-x-3 justify-end items-center pr-3">
         <a
           href="#"
           className={`${pathname.includes("addoredit") ? "hidden" : ""}`}
@@ -17,8 +17,8 @@ const AdminPage = () => {
         <a href="#" className={`${pathname == "/admin" ? "hidden" : ""}`}>
           search
         </a>
-      </nav>
-      <form action="" className="">
+      </nav> */}
+      {/* <form action="" className="">
         <input
           type="file"
           className=""
@@ -26,7 +26,7 @@ const AdminPage = () => {
             setFile(e.target.files[0]);
           }}
         />
-      </form>
+      </form> */}
       <Outlet />
     </section>
   );
