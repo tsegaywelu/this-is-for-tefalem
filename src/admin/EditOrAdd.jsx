@@ -43,9 +43,23 @@ function EditOrAdd() {
     }
     setStudent({ ...student, [e.target.name]: e.target.value });
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
+
+    if(isAddMode){
+      await registerStudent(student)
+    }else{
+      await updateStudent(student)
+    }
+
+
+   
+
+
   };
+
+
+
   return (
     <div className="mt-12 ">
           <div className="py-4 px-8">
@@ -240,29 +254,15 @@ function EditOrAdd() {
             />
                 <p id="error_intake_year"></p>
             </div>
-            
-
-            <div className="mb-4">
-                <label className="block text-grey-darker text-sm font-bold mb-2">Amharic:</label>
-                  <input
-                className="border rounded w-full py-2 px-3 text-grey-darker"
-                type="number"
-                name="amaharic"
-                value={student.result.amharic}
-                placeholder="civic"
-                id=""
-                onChange={changeHandler}
-              />
-                <p id="error_intake_year"></p>
-            </div>
+          
             
           </div>
         </div>
         <div className="mb-4 mx-auto">
-                            <button
-                                className="mb-2 mx-auto rounded-full py-1 px-24 bg-gradient-to-r from-green-400 to-blue-500 ">
-                                Save
-                            </button>
+                    <button
+                        className="mb-2 mx-auto rounded-full py-1 px-24 bg-gradient-to-r from-green-400 to-blue-500 ">
+                        Save
+                    </button>
                         </div>
                 </form>
                     </div>
