@@ -1,10 +1,17 @@
-import React, { useRef, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 const AdminPage = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate()
   console.log(location);
   const [file, setFile] = useState();
   const fr = useRef();
+  useEffect(()=>{
+    const authToken = localStorage.getItem('token')
+    if(!authToken) {
+        navigate('/login')
+    }
+  }, [])
   return (
     <section className=" w-full mt-12 ">
       {/* <nav className="w-full flex space-x-3 justify-end items-center pr-3">

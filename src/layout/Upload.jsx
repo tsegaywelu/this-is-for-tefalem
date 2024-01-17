@@ -1,25 +1,49 @@
 import React, { useState } from 'react'
+import { upload } from '../utils/backend.utils'
 
 function Upload() {
     const [file, setFile] = useState(null)
+    const [isFileOvering, setIsFileOvering] = useState(false)
 
     const handleDragOver = (e)=>{
         e.preventDefault()
+        setIsFileOvering(true)
+
+    }
+    const handleDragleave = (e)=>{
+        e.preventDefault()
+        setIsFileOvering(false)
     }
 
     const handleDrop = (e)=>{
         e.preventDefault()
-        console.log(e.dataTransfer.files)
-        if((e.dataTransfer.files[0].name).includes('.xlsx')){
-            setFile(e.dataTransfer.files[0])
+        const dropedFile = e.dataTransfer.files[0]
+        const allowdFileTypes = ['text/csv', 'application/json']
+        if(allowdFileTypes.includes(dropedFile.type)){
+            setFile(dropedFile)
         }
+        setIsFileOvering(false)
     }
 
     const handleFileInputChange = (e)=>{
         e.preventDefault()
-        console.log(e.target.files)
-        if((e.target.files[0].name).includes('.xlsx')){
-            setFile(e.target.files[0])
+        const dropedFile = e.target.files[0]
+        const allowdFileTypes = ['text/csv', 'application/json']
+        if(allowdFileTypes.includes(dropedFile.type)){
+            setFile(dropedFile)
+        }
+    }
+
+    const submitHandler = async(e)=>{
+        e.preventDefault()
+        try {
+            console.log(file)
+            const formData = new FormData()
+            formData.append('ff', file)
+           const response = await upload(formData)
+            //setFile(null)
+        } catch (error) {
+            alert(error.response.statusText)
         }
     }
 
@@ -27,15 +51,7 @@ function Upload() {
     <div className="flex items-center justify-center">
 
     <div className="mx-auto w-full max-w-[550px] bg-white">
-        <form className="py-4 px-9">
-            {/* <div className="mb-5">
-                <label for="email" className="mb-3 block text-base font-medium text-[#07074D]">
-                    Send files to this email:
-                </label>
-                <input type="email" name="email" id="email" placeholder="example@domain.com"
-                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-            </div> */}
-
+        <form className="py-4 px-9" onSubmit={(e)=>submitHandler(e)}>
             <div className="mb-6 pt-4">
                 <label className="mb-5 block text-xl font-semibold text-[#07074D]">
                     Upload File
@@ -45,7 +61,7 @@ function Upload() {
                     <div className="flex items-center justify-between" 
                         >
                         <span className="truncate pr-3 text-base font-medium text-[#07074D]">
-                            {file.type} 
+                            {file.name} 
                         </span>
                         <button className="text-[#07074D]" onClick={()=>setFile(null)}>
                             <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
@@ -61,11 +77,10 @@ function Upload() {
                     </div>
                 </div>
                         :
-                
-                <div className="mb-8"  onDrop={handleDrop}>
-                <input type="file" name="file" id="file" className="sr-only" onChange={handleFileInputChange}/>
+                <div className="mb-8"  onDrop={(e)=>handleDrop(e)} onDragOver={(e)=>handleDragOver(e)} onDragLeave={(e)=>handleDragleave(e)}>
+                <input type="file" name="file" id="file" className="sr-only" onChange={(e)=>handleFileInputChange(e)}/>
                 <label htmlFor="file"
-                    className="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed hover:border-red-500 hover:border-2 border-[#e0e0e0] p-12 text-center">
+                    className={`relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed hover:border-blue-500  border-[#e0e0e0] p-12 text-center ${ (isFileOvering && "border-blue-500  bg-blue-50")}`}>
                     <div>
                         <span className="mb-2 block text-xl font-semibold text-[#07074D]">
                             Drop excel file here
@@ -105,7 +120,7 @@ function Upload() {
             </div>
 
             <div>
-                <button
+                <button type='submit'
                     className="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none">
                     Send File
                 </button>
