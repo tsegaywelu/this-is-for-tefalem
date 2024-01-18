@@ -61,9 +61,9 @@ function EditOrAdd() {
 
 
   return (
-    <div className="mt-12 ">
-          <div className="py-4 px-8">
-      <div className="py-4 px-8 text-black text-xl font-bold border-b border-grey-500 text-center mx-auto">Student Application
+    <div className=" ">
+          <div className=" px-8">
+      <div className=" px-8 text-black text-xl font-bold border-b border-grey-500 text-center mx-auto">Student Application
                 </div>
 
                 <form onSubmit={submitHandler} className=" flex flex-col  gap-2 mb-4 md:mb-0 py-8 " name="student_application" id="student_application" action="">

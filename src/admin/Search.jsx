@@ -27,7 +27,7 @@ function Search() {
     try {
       const response = await fetchStudent(searchparam);
       const student = response.data;
-      setData((prevStudents) => [...prevStudents, { ...student }]); //thy are equal setData(filteredusers);
+      setData([student]); //thy are equal setData(filteredusers);
     } catch (error) {}
   };
 
@@ -59,47 +59,49 @@ function Search() {
               </span>
           </button>
       </form>
-      <table
-        className={`${
-          !data.length ? "hidden" : ""
-        } table mx-auto mt-6 w-3/4 text-sm text-left rtl:text-right text-gray-500`}
-      >
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50 table-header-group">
-          <tr className=" table-row">
-            <td>id</td>
-            <td>name</td>
-            <td>middle</td>
-            <td>last</td>
-            <td>actions</td>
-          </tr>
+      
+      <div className="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
+    <table className="w-full table-fixed">
+        <thead>
+            <tr className="bg-gray-100">
+                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">ID</th>
+                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Name</th>
+                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">School</th>
+                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Average</th>
+                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Percentile</th>
+                <th className="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Actions</th>
+            </tr>
         </thead>
-        <tbody>
-          {data?.map((student) => {
+        <tbody className="bg-white">
+        {data?.map((student) => {
             return (
-              <tr key={student.id || Math.random()}>
-                <td>{student.id}</td>
-                <td>{student.name}</td>
-                <td>{student.middlename}</td>
-                <td>{student.lastname}</td>
-                <td>
-                  <button
-                    className=" mr-3 text-yellow-600"
+            <tr key={student.id}>
+                <td className="py-4 px-6 border-b border-gray-200">{student.id}</td>
+                <td className="py-4 px-6 border-b border-gray-200">{student.name} {student.middlename} {student.lastname}</td>
+                <td className="py-4 px-6 border-b border-gray-200 truncate">{student.schoolName}</td>
+                <td className="py-4 px-6 border-b border-gray-200 truncate">{student.average}</td>
+                <td className="py-4 px-6 border-b border-gray-200">90</td>
+                <td className="py-4 px-6 border-b border-gray-200">
+                    <button
+                    className=" mr-3 text-yellow-600 hover:underline"
                     onClick={() => editHandler(student)}
                   >
                     edit
                   </button>
                   <button
                     onClick={() => deleteHandler(student.id)}
-                    className=" text-red-600"
+                    className=" text-red-600 hover:underline"
                   >
                     delete
                   </button>
                 </td>
-              </tr>
+            </tr>
             );
           })}
+            
         </tbody>
-      </table>
+    </table>
+</div>
     </div>
   );
 }

@@ -27,7 +27,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Pass/Fail Demo For Every Subject',
+      text: 'Pass/Fail Demo Per Every Subject',
     },
   },
 };

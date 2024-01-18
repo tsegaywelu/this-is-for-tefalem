@@ -14,12 +14,12 @@ import Dashboard from "./routes/Dashboard";
 
 function App() {
   return (
-    <main className="h-screen mx-auto contaner  border-gry-900 overflow-y-auto pt-3 ">
+    <main className="h-full mx-auto contaner  border-gray-900 overflow-y-auto ">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<AppLayout />}>
             <Route index element={<Home />} />
-            <Route path="/about" element={<AboutUs/>}></Route>
+          <Route path="/about" element={<AboutUs/>}></Route>
             <Route path="/contact" element={<ContactUs/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="admin/" element={<Adminlayout />}>

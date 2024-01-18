@@ -4,10 +4,12 @@ import Header from "../components/header";
 
 function Index() {
   return (
-    <>
+    <div className=" h-full">
       <Header />
-      <Outlet />
-    </>
+      <div className=" h-screen">
+        <Outlet />
+      </div>
+    </div>
   );
 }
 
