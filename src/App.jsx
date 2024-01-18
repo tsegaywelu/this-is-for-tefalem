@@ -5,16 +5,14 @@ import AppLayout from "./layout/index";
 import Adminlayout from "./admin/Adminlayout";
 import EditOrAdd from "./admin/EditOrAdd";
 import Search from "./admin/Search";
-import { useContextData } from "./context/provider";
 import Pagenotfound from "./Pagenotfound";
 import AboutUs from "./routes/AboutUs";
 import ContactUs from "./routes/ContactUs";
 import Login from "./components/login";
 import Upload from "./layout/Upload";
+import Dashboard from "./routes/Dashboard";
 
 function App() {
-  const value = useContextData();
-  console.log(value);
   return (
     <main className="h-screen mx-auto contaner  border-gry-900 overflow-y-auto pt-3 ">
       <BrowserRouter>
@@ -25,7 +23,8 @@ function App() {
             <Route path="/contact" element={<ContactUs/>}></Route>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="admin/" element={<Adminlayout />}>
-              <Route index element={<Search />} />
+              <Route index element={<Dashboard />} />
+              <Route path="search" element={<Search />} />
               <Route path="addoredit" element={<EditOrAdd />} />
               <Route path="upload" element={<Upload />} />
             </Route>

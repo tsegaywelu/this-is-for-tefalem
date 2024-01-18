@@ -2,11 +2,11 @@ import React from 'react'
 
 const ContactUs = ()=>{
   return (
-    <section className="bg-blue-50 dark:bg-slate-800" id="contact">
+    <section className="bg-teal-100 dark:bg-slate-800" id="contact">
     <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-4">
             <div className="mb-6 max-w-3xl text-center sm:text-center md:mx-auto md:mb-12">
-                <p className="text-base font-semibold uppercase tracking-wide text-blue-600 dark:text-blue-200">
+                <p className="text-base font-semibold uppercase tracking-wide text-teal-600 dark:text-teal-200">
                     Contact
                 </p>
                 <h2
@@ -28,7 +28,7 @@ const ContactUs = ()=>{
                     </p>
                     <ul className="mb-6 md:mb-0">
                         <li className="flex">
-                            <div className="flex h-10 w-10 items-center justify-center rounded bg-blue-900 text-gray-50">
+                            <div className="flex h-10 w-10 items-center justify-center rounded bg-teal-900 text-gray-50">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
                                     strokeLinejoin="round" className="h-6 w-6">
@@ -46,7 +46,7 @@ const ContactUs = ()=>{
                             </div>
                         </li>
                         <li className="flex">
-                            <div className="flex h-10 w-10 items-center justify-center rounded bg-blue-900 text-gray-50">
+                            <div className="flex h-10 w-10 items-center justify-center rounded bg-teal-900 text-gray-50">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
                                     strokeLinejoin="round" className="h-6 w-6">
@@ -65,7 +65,7 @@ const ContactUs = ()=>{
                             </div>
                         </li>
                         <li className="flex">
-                            <div className="flex h-10 w-10 items-center justify-center rounded bg-blue-900 text-gray-50">
+                            <div className="flex h-10 w-10 items-center justify-center rounded bg-teal-900 text-gray-50">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
                                     strokeLinejoin="round" className="h-6 w-6">
@@ -99,7 +99,7 @@ const ContactUs = ()=>{
                             </div>
                         </div>
                         <div className="text-center">
-                            <button type="submit" className="w-full bg-blue-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0">Send Message</button>
+                            <button type="submit" className="w-full bg-teal-800 text-white px-6 py-3 font-xl rounded-md sm:mb-0">Send Message</button>
                         </div>
                     </form>
                 </div>

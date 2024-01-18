@@ -20,9 +20,9 @@ export const createStudent = (student)=>{
     })
 }
 
-export const updateStudent = (id, student)=>{
+export const updateStudent = (student)=>{
     const token = localStorage.getItem('token')
-    return API_SERVICE.put(`/${id}`, student, {
+    return API_SERVICE.put(`/${student.id}`, student, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -44,5 +44,14 @@ export const upload = (formData)=>{
         headers: {
             Authorization: `Bearer ${token}`
         }
+    })
+}
+
+export const fetchStudent = (id)=>{
+    // const token = localStorage.getItem('token')
+    return API_SERVICE.get(`/single/${id}`, {
+        // headers: {
+        //     Authorization: `Bearer ${token}`
+        // }
     })
 }

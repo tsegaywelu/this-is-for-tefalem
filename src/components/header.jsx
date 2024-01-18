@@ -4,15 +4,25 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Header() {
   const location = useLocation()
-  const { dispatch } = useContextData();
+  const { data, dispatch } = useContextData();
+  const navigate = useNavigate()
   const [hideMenu, setHideMenu] = useState(true)
   const toggleMenu = ()=>{
     setHideMenu(!hideMenu)
   }
+  
+  const logoutHandler = ()=>{
+    localStorage.removeItem('token')
+    dispatch({type: 'logout'})
+    navigate('/login')
+  }
+
   return (
-    <header className="lg:px-16 px-4 bg-white flex flex-wrap items-center py-4 shadow-md">
+    <header className="lg:px-16 px-4 bg-teal-50 flex flex-wrap items-center py-4 shadow-md">
     <div className="flex-1 flex justify-between items-center">
-        <a href="#" className="text-xl">TEB</a>
+        <Link to={data.logged ? '/admin' : '/'} className=" "><img style={{
+          height: '80px'
+        }} src="src/assets/tbe.png" alt="TEB LOGO" /></Link>
     </div>
 
     <label htmlFor="menu-toggle" className=" cursor-pointer md:hidden block" onClick={toggleMenu}>
@@ -27,11 +37,19 @@ function Header() {
     <div className={`${hideMenu && 'hidden'} md:flex md:items-center md:w-auto w-full`} id="menu">
         <nav>
             <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-                <li><Link to="/" className={` w-20 md:p-4 py-3 px-0 block hover:font-bold ${(location.pathname==='/') && 'font-bold'}`} >Search</Link></li>
-                <li><Link to="/admin/addoredit" className={` w-20 md:p-4 py-3 px-0 block hover:font-bold ${(location.pathname==='/admin/addoredit') && 'font-bold'}`} >Add</Link></li>
-                <li><Link to="/admin/upload" className={` w-20 md:p-4 py-3 px-0 block hover:font-bold ${(location.pathname==='/admin/upload') && 'font-bold'}`} >Upload</Link></li>
-                <li><Link to="/about" className={` w-32 md:p-4 py-3 px-0 block hover:font-bold ${(location.pathname==='/about') && 'font-bold'}`}>About Us</Link></li>
-                <li><Link to="/contact" className={` w-32 md:p-4 py-3 px-0 block hover:font-bold ${(location.pathname==='/contact') && 'font-bold'} md:mb-0 mb-2`}>Contact Us</Link></li>
+                <div className="flex flex-col md:flex-row md:gap-2">
+                {!data.logged && <li><Link to="/" className={` md:w-28 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/') && 'font-bold bg-gray-200'}`} >My Result</Link></li>}
+                {data.logged && <li><Link to="/admin" className={` md:w-24 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/admin') && 'font-bold bg-gray-200'}`} >Dashboard</Link></li>}
+                {data.logged && <li><Link to="/admin/search" className={` md:w-24 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/admin/search') && 'font-bold bg-gray-200'}`} >Search</Link></li>}
+                  {data.logged && <li><Link to="/admin/addoredit" className={` md:w-20 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/admin/addoredit') && 'font-bold bg-gray-200'}`} >Add</Link></li>}
+                  {data.logged && <li><Link to="/admin/upload" className={` md:w-20 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/admin/upload') && 'font-bold bg-gray-200'}`} >Upload</Link></li>}
+                  {!data.logged && <li><Link to="/about" className={` md:w-32 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/about') && 'font-bold bg-gray-200'}`}>About Us</Link></li>}
+                  {!data.logged && <li><Link to="/contact" className={` md:w-32 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/contact') && 'font-bold bg-gray-200'} md:mb-0 mb-2`}>Contact Us</Link></li>}
+                </div>
+                <div>
+                  {data.logged && <li><button onClick={logoutHandler} className={` md:w-32 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded  md:mb-0 mb-2`}>Logout</button></li>}
+                  {!data.logged && <li><Link to="/login" className={` md:w-20 md:p-4 py-3 md:px-0 md:text-center block hover:font-bold hover:bg-gray-100 px-4 rounded ${(location.pathname==='/login') && 'font-bold bg-gray-200'}`} >Login</Link></li>}
+                </div>
             </ul>
         </nav>
     </div>

@@ -8,6 +8,7 @@ const AdminPage = () => {
   const fr = useRef();
   useEffect(()=>{
     const authToken = localStorage.getItem('token')
+    console.log('admin running')
     if(!authToken) {
         navigate('/login')
     }

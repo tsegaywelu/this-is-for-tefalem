@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { searchStudent } from "../utils/json-server";
+import { fetchStudent } from "../utils/backend.utils";
 
 const Home = () => {
   const [id, setid] = useState("");
@@ -8,10 +9,10 @@ const Home = () => {
   const handlechangeid = (e) => {
     setid(e.target.value);
   };
-  const getresult =async(e) => {
+  const getresult = async(e) => {
     e.preventDefault();
     try {
-      const  response = await searchStudent(id)
+      const  response = await fetchStudent(id)
          st(response.data)
          setError(null)
     } catch (error) {

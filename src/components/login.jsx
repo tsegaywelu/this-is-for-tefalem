@@ -1,26 +1,42 @@
 import React, { useEffect, useState } from 'react'
 import { login } from '../utils/backend.utils'
 import { useNavigate } from 'react-router-dom'
+import { useContextData } from '../context/provider'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const navigation = useNavigate()
+    const {data, dispatch} = useContextData()
 
     const submitHandler = async (e)=>{
         e.preventDefault()
         console.log('loging in')
+        const toastID = toast.loading('Trying to login', {
+            position: "top-center"
+        })
         try {
             const response  = await login(username, password)
             localStorage.setItem('token', response.data.token)
+            toast.done(toastID)
+            dispatch({type: 'login'})
             navigation('/admin')
         } catch (error) {
+            toast.done(toastID)
+            toast(error.response.statusText, {
+                type: 'error'
+            })
             alert(error.response.statusText)
         }
     }
+
   return (
-    <div className="h-screen bg-gray-50 py-20 p-4 md:p-20 lg:p-32">
-        <div className="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg mx-auto">
+    <div className="h-screen bg-teal-100 py-20 p-4 md:p-20 lg:p-32">
+        <ToastContainer></ToastContainer>
+        <div className="max-w-sm bg-teal-50 rounded-lg overflow-hidden shadow-lg mx-auto">
             <div className="p-6">
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome Back!</h2>
                 <p className="text-gray-700 mb-6">Please sign in to your account</p>
@@ -43,10 +59,10 @@ function Login() {
                     </div>
                     <div className="flex items-center justify-between">
                         <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" >
+                        className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" >
                 Sign In
             </button>
-                        <a className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="#">
+                        <a className="inline-block align-baseline font-bold text-sm text-teal-500 hover:text-teal-800" href="#">
                             Forgot Password?
                         </a>
                     </div>

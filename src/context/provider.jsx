@@ -1,9 +1,9 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 const AppCon = createContext();
 const ins = {
   isAddMode: true,
   EditUser: null,
-  logged: undefined,
+  logged: false,
 };
 
 const reducer = (s = ins, { type, payload }) => {
@@ -14,11 +14,25 @@ const reducer = (s = ins, { type, payload }) => {
         isAddMode: false,
         EditUser: payload,
       };
+    case "login":
+      return {
+        ...s, logged: true
+      }
+    case "logout":
+      return {
+        ...s, logged: false
+      }
   }
 };
 
 function AppProvider({ children }) {
   const [data, dispatch] = useReducer(reducer, ins);
+  useEffect(()=>{
+    const token = localStorage.getItem('token')
+    if(token){
+      dispatch({type: 'login'})
+    }
+  }, [])
   return (
     <AppCon.Provider value={{ data, dispatch }}>{children}</AppCon.Provider>
   );
