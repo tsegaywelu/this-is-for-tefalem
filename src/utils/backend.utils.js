@@ -1,15 +1,15 @@
 import axios from "axios";
 
-// const URL = "http://localhost:3000"
-const URL = "http://10.14.30.195:2300"
+const URL = "http://10.14.30.228:2300"
+// const URL = "http://10.14.30.195:2300"
 
 const API_SERVICE = axios.create({
     baseURL: URL,
 })
 
-export const login = (email, password)=>{
+ export const login = (email, password)=>{
     return API_SERVICE.post('/admin/login', {email, password})
-}
+} 
 
 export const createStudent = (student)=>{
     const token = localStorage.getItem('token')
@@ -54,4 +54,10 @@ export const fetchStudent = (id)=>{
         //     Authorization: `Bearer ${token}`
         // }
     })
+}
+export const sendContact=(contact)=>{
+    return API_SERVICE.post("/contact",contact)
+}
+export const getEvents=()=>{
+    return API_SERVICE.get('/admin/getevents')
 }

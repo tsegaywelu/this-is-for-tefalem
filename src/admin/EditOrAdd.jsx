@@ -254,6 +254,9 @@ function EditOrAdd() {
             />
                 <p id="error_intake_year"></p>
             </div>
+           <label className=" mt-5"htmlFor="studentphoto"></label>
+
+            <input type="file" id="studentphoto"  />  upload student photo
           
             
           </div>

@@ -60,7 +60,7 @@ function Login() {
                     <div className="flex items-center justify-between">
                         <button
                         className="bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" >
-                Sign In
+                Log In
             </button>
                         <a className="inline-block align-baseline font-bold text-sm text-teal-500 hover:text-teal-800" href="#">
                             Forgot Password?

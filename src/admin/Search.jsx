@@ -3,6 +3,11 @@ import { useContextData } from "../context/provider";
 import { Await, useNavigate } from "react-router-dom";
 import { deleteStudent, fetchAll, searchStudent } from "../utils/json-server";
 import { fetchStudent } from "../utils/backend.utils";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function Search() {
   const [data, setData] = useState([]);
   const { dispatch } = useContextData();
@@ -24,11 +29,21 @@ function Search() {
 
   const searchHandler = async (e) => {
     e.preventDefault()
+    const toastID = toast.loading('Searching', {
+      position: 'top-center'
+    })
     try {
       const response = await fetchStudent(searchparam);
       const student = response.data;
       setData([student]); //thy are equal setData(filteredusers);
-    } catch (error) {}
+      toast.done(toastID)
+    } catch (error) {
+      toast.done(toString)
+      toast(e.response.statusText, {
+        type: 'error',
+        position: 'top-center'
+      })
+    }
   };
 
   /* useEffect(() => {
@@ -45,9 +60,9 @@ function Search() {
 
   return (
     <div className="mt-3 md:mt-0">
-      
+      <ToastContainer></ToastContainer>
       <form className="flex relative rounded-md w-full px-4 max-w-xl mx-auto mb-4" onSubmit={searchHandler}>
-          <input type="text" name="q" id="query" placeholder="Insert Student's ID Number"
+          <input type="text" name="q" id="query" placeholder="Search Student"
               value={searchparam}
               onChange={(e) => setsearchparam(e.target.value)}
               className="w-full p-3 rounded-md border-2 border-r-white rounded-r-none border-gray-300 placeholder-gray-500 dark:placeholder-gray-300 dark:bg-gray-500dark:text-gray-300 dark:border-none " />
@@ -74,12 +89,12 @@ function Search() {
         </thead>
         <tbody className="bg-white">
         {data?.map((student) => {
-            return (
-            <tr key={student.id}>
-                <td className="py-4 px-6 border-b border-gray-200">{student.id}</td>
-                <td className="py-4 px-6 border-b border-gray-200">{student.name} {student.middlename} {student.lastname}</td>
-                <td className="py-4 px-6 border-b border-gray-200 truncate">{student.schoolName}</td>
-                <td className="py-4 px-6 border-b border-gray-200 truncate">{student.average}</td>
+            return (student && 
+             <tr key={student?.id}>
+                <td className="py-4 px-6 border-b border-gray-200">{student?.id}</td>
+                <td className="py-4 px-6 border-b border-gray-200">{student?.name} {student?.middlename} {student?.lastname}</td>
+                <td className="py-4 px-6 border-b border-gray-200 truncate">{student?.schoolName}</td>
+                <td className="py-4 px-6 border-b border-gray-200 truncate">{student?.average}</td>
                 <td className="py-4 px-6 border-b border-gray-200">90</td>
                 <td className="py-4 px-6 border-b border-gray-200">
                     <button
@@ -89,7 +104,7 @@ function Search() {
                     edit
                   </button>
                   <button
-                    onClick={() => deleteHandler(student.id)}
+                    onClick={() => deleteHandler(student?.id)}
                     className=" text-red-600 hover:underline"
                   >
                     delete

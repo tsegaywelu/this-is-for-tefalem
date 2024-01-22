@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { upload } from '../utils/backend.utils'
 
+
 function Upload() {
     const [file, setFile] = useState(null)
     const [isFileOvering, setIsFileOvering] = useState(false)
@@ -47,10 +48,12 @@ function Upload() {
         }
     }
 
+    
   return (
     <div className="flex items-center justify-center">
 
-    <div className="mx-auto w-full max-w-[550px] bg-white">
+    <div className="mx-auto w-full max-w-[550px] ">
+    
         <form className="py-4 px-9" onSubmit={(e)=>submitHandler(e)}>
             <div className="mb-6 pt-4">
                 <label className="mb-5 block text-xl font-semibold text-[#07074D]">

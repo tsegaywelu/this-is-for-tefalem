@@ -14,6 +14,7 @@ const Home = () => {
     try {
       const  response = await fetchStudent(id)
          st(response.data)
+         console.log(response.data)
          setError(null)
     } catch (error) {
       // console.log("some thing wrong", error);
@@ -55,7 +56,7 @@ const Home = () => {
                           English
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                          {t.result.eng}
+                          {t.result[0].english}
                       </dd>
                   </div>
                   <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -63,7 +64,7 @@ const Home = () => {
                           Maths
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {t.result.maths}
+                      {t.result[0].maths}
                       </dd>
                   </div>
                   <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -71,7 +72,7 @@ const Home = () => {
                           Biology
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {t.result.biology}
+                      {t.result[0].biology}
                       </dd>
                   </div>
                   <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -79,7 +80,7 @@ const Home = () => {
                           Chemistry
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {t.result.chemistry}
+                      {t.result[0].chemistry}
                       </dd>
                   </div>
                 </dl>
@@ -89,7 +90,7 @@ const Home = () => {
                           Physics
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {t.result.physics}
+                      {t.result[0].physics}
                       </dd>
                   </div>
                   <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -97,7 +98,7 @@ const Home = () => {
                           Civic
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {t.result.civic}
+                      {t.result[0].civic}
                       </dd>
                   </div>
                   <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -105,7 +106,7 @@ const Home = () => {
                           Geography
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {t.result.geography}
+                      {t.result[0].geography}
                       </dd>
                   </div>
                   <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -113,7 +114,7 @@ const Home = () => {
                           Tigrigna
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                      {t.result.tigrigna}
+                      {t.result[0].tigrigna}
                       </dd>
                   </div>
                   <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -121,7 +122,7 @@ const Home = () => {
                           Amahric
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                        {t.result.amharic}
+                        {t.result[0].amharic}
                       </dd>
                   </div>
               </dl>

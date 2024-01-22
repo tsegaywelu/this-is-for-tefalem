@@ -11,27 +11,32 @@ import ContactUs from "./routes/ContactUs";
 import Login from "./components/login";
 import Upload from "./layout/Upload";
 import Dashboard from "./routes/Dashboard";
+import { ModalProvider } from "styled-react-modal";
+import Events from "./routes/evet2";
 
 function App() {
   return (
     <main className="h-full mx-auto contaner  border-gray-900 overflow-y-auto ">
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<AppLayout />}>
-            <Route index element={<Home />} />
-          <Route path="/about" element={<AboutUs/>}></Route>
-            <Route path="/contact" element={<ContactUs/>}></Route>
-            <Route path="/login" element={<Login/>}></Route>
-            <Route path="admin/" element={<Adminlayout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="search" element={<Search />} />
-              <Route path="addoredit" element={<EditOrAdd />} />
-              <Route path="upload" element={<Upload />} />
+        <ModalProvider>
+          <Routes>
+            <Route path="/" element={<AppLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/events" element={<Events/>}/>
+            <Route path="/about" element={<AboutUs/>}></Route>
+              <Route path="/contact" element={<ContactUs/>}></Route>
+              <Route path="/login" element={<Login/>}></Route>
+              <Route path="admin/" element={<Adminlayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="search" element={<Search />} />
+                <Route path="addoredit" element={<EditOrAdd />} />
+                <Route path="upload" element={<Upload />} />
+              </Route>
+              <Route path="*" element={<Pagenotfound />} />
             </Route>
-            <Route path="*" element={<Pagenotfound />} />
-          </Route>
-          
-        </Routes>
+            
+          </Routes>
+        </ModalProvider>
       </BrowserRouter>
     </main>
   );
